@@ -22,52 +22,88 @@ class TicTacToe {
     } else {
       this.currentPlayer = 'x'
     }
-
     console.log(rowIndex, columnIndex)
   }
 
-  isFinished() {}
+  isFinished() {
+    if (this.getWinner() || this.isDraw()) {
+      console.log('finished')
+      return true
+    }
+  }
 
   getWinner() {
     // check first row
-    if (this.matrix[0][0] === this.matrix[0][1] && this.matrix[0][1]  === this.matrix[0][2]) {
+    if (
+      this.matrix[0][0] === this.matrix[0][1] &&
+      this.matrix[0][1] === this.matrix[0][2]
+    ) {
       return this.matrix[0][0]
-    } else
+    }
     // check second row
-    if (this.matrix[1][0] === this.matrix[1][1] && this.matrix[1][1]  === this.matrix[1][2]) {
+    else if (
+      this.matrix[1][0] === this.matrix[1][1] &&
+      this.matrix[1][1] === this.matrix[1][2]
+    ) {
       return this.matrix[1][0]
-    } else
+    }
     // check third row
-    if (this.matrix[2][0] === this.matrix[2][1] && this.matrix[2][1]  === this.matrix[2][2]) {
+    else if (
+      this.matrix[2][0] === this.matrix[2][1] &&
+      this.matrix[2][1] === this.matrix[2][2]
+    ) {
       return this.matrix[2][0]
-    } else
+    }
     // check first column
-    if (this.matrix[0][0] === this.matrix[1][0] && this.matrix[1][0]  === this.matrix[2][0]) {
+    else if (
+      this.matrix[0][0] === this.matrix[1][0] &&
+      this.matrix[1][0] === this.matrix[2][0]
+    ) {
       return this.matrix[0][0]
-    } else
+    }
     // check second column
-    if (this.matrix[0][1] === this.matrix[1][1] && this.matrix[1][1]  === this.matrix[2][1]) {
+    else if (
+      this.matrix[0][1] === this.matrix[1][1] &&
+      this.matrix[1][1] === this.matrix[2][1]
+    ) {
       return this.matrix[0][1]
-    } else
+    }
     // check third column
-    if (this.matrix[0][2] === this.matrix[1][2] && this.matrix[1][2]  === this.matrix[2][2]) {
+    else if (
+      this.matrix[0][2] === this.matrix[1][2] &&
+      this.matrix[1][2] === this.matrix[2][2]
+    ) {
       return this.matrix[0][2]
-    } else
+    }
     // check left-right diagonal
-    if (this.matrix[0][0] === this.matrix[1][1] && this.matrix[1][1]  === this.matrix[2][2]) {
+    else if (
+      this.matrix[0][0] === this.matrix[1][1] &&
+      this.matrix[1][1] === this.matrix[2][2]
+    ) {
       return this.matrix[0][0]
-    } else
+    }
     // check right-left diagonal
-    if (this.matrix[0][2] === this.matrix[1][1] && this.matrix[1][1]  === this.matrix[2][0]) {
+    else if (
+      this.matrix[0][2] === this.matrix[1][1] &&
+      this.matrix[1][1] === this.matrix[2][0]
+    ) {
       return this.matrix[0][2]
     } else {
       return null
     }
   }
 
-  noMoreTurns() {}
+  noMoreTurns() {
+    // if no 'null' cell return true
+    return this.matrix.every(cell => !cell.includes(null))
+  }
 
-  isDraw() {}
+  isDraw() {
+    // if there is no turns and no winner return true
+    if (this.noMoreTurns() && !this.getWinner()) {
+      return true
+    }
+  }
 
   getFieldValue(rowIndex, colIndex) {
     return this.matrix[rowIndex][colIndex]
