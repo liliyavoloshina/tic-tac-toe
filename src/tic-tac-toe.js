@@ -14,27 +14,17 @@ class TicTacToe {
 
   nextTurn(rowIndex, columnIndex) {
     // check if clicked cell is already full
-    if (this.matrix[rowIndex][columnIndex] !== null) {
-      return
-    }
+    if (this.matrix[rowIndex][columnIndex] !== null) return
 
     // draw symbol in clicked ceil
     this.matrix[rowIndex][columnIndex] = this.currentPlayer
 
     // change symbol to opposite
-    if (this.currentPlayer === 'x') {
-      this.currentPlayer = 'o'
-    } else {
-      this.currentPlayer = 'x'
-    }
+    this.currentPlayer === 'x' ? this.currentPlayer = 'o' : this.currentPlayer = 'x'
   }
 
   isFinished() {
-    if (this.isDraw() || this.getWinner()) {
-      return true
-    } else {
-      return false
-    }
+    return this.isDraw() || this.getWinner() ? true : false
   }
 
   getWinner() {
@@ -104,19 +94,11 @@ class TicTacToe {
   }
 
   isDraw() {
-    if (this.noMoreTurns() && !this.getWinner()) {
-      return true
-    } else {
-      return false
-    }
+    return this.noMoreTurns() && !this.getWinner() ? true : false
   }
 
   getFieldValue(rowIndex, colIndex) {
-    if (this.matrix[rowIndex][colIndex]) {
-      return this.matrix[rowIndex][colIndex]
-    } else {
-      return null
-    }
+    return this.matrix[rowIndex][colIndex] !== null ? this.matrix[rowIndex][colIndex] : null
   }
 }
 
