@@ -13,6 +13,11 @@ class TicTacToe {
   }
 
   nextTurn(rowIndex, columnIndex) {
+    // check if clicked cell is already full
+    if (this.matrix[rowIndex][columnIndex] !== null) {
+      return
+    }
+
     // draw symbol in clicked ceil
     this.matrix[rowIndex][columnIndex] = this.currentPlayer
 
@@ -22,13 +27,13 @@ class TicTacToe {
     } else {
       this.currentPlayer = 'x'
     }
-    console.log(rowIndex, columnIndex)
   }
 
   isFinished() {
-    if (this.getWinner() || this.isDraw()) {
-      console.log('finished')
+    if (this.isDraw() || this.getWinner()) {
       return true
+    } else {
+      return false
     }
   }
 
@@ -99,14 +104,19 @@ class TicTacToe {
   }
 
   isDraw() {
-    // if there is no turns and no winner return true
     if (this.noMoreTurns() && !this.getWinner()) {
       return true
+    } else {
+      return false
     }
   }
 
   getFieldValue(rowIndex, colIndex) {
-    return this.matrix[rowIndex][colIndex]
+    if (this.matrix[rowIndex][colIndex]) {
+      return this.matrix[rowIndex][colIndex]
+    } else {
+      return null
+    }
   }
 }
 
